@@ -13,9 +13,22 @@ module.exports = interfaces => ({
    */
   executar: async (nomeMetodo, req, res) => {
     const requisicoes = {
-      // gravarUsuario: function(req) {
-      //   const { name, username, email, password } = req.body;
-      // },
+      /**
+       * Requisição POST para gravar um cliente.
+       * @param {object} req - requisição do express.
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
+       */
+      gravarUsuario: async req => {
+        const { id, name, username, email, password } = req.body;
+        const r = await interfaces.entradaComandos.executar("gravarUsuario", {
+          id,
+          nome: name,
+          identificacao: username,
+          email: email,
+          senha: password
+        });
+        return r;
+      },
       /**
        * Requisição GET para obter uma lista dos clientes.
        * @param {object} req - web req data

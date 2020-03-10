@@ -1,4 +1,6 @@
 const { entradaComandos, entradaConsultas } = require("../../../interfaces");
+
+const { gravarUsuario } = require("../../../interfaces/comandos");
 const { listarUsuarios } = require("../../../interfaces/consultas");
 /**
  * @module {interfaces} - módulo para criar as interfaces do serviço - entradaComandos e entradaConsultas.
@@ -6,9 +8,12 @@ const { listarUsuarios } = require("../../../interfaces/consultas");
  * @returns {Oject} objeto com as interfaces criadas: {entradaComandos, entradaConsultas}.
  */
 module.exports = repositorios => {
+  const { repositorioUsuario } = repositorios.repositorios;
   const { consultaUsuario } = repositorios.consultas;
 
-  const _comandos = {};
+  const _comandos = {
+    gravarUsuario: gravarUsuario(repositorioUsuario)
+  };
 
   const _consultas = {
     listarUsuarios: listarUsuarios(consultaUsuario)

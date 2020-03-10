@@ -22,5 +22,7 @@ module.exports = controle => app => {
     "/usuarios",
     async (req, res) => await controle.executar("gravarUsuario", req, res)
   );
+  app.put('/usuarios', async (req, res) => await controle.executar('gravarUsuario', req, res));
+
   return app;
 };

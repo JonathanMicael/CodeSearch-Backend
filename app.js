@@ -5,7 +5,8 @@ const { controle } = require("./src/api");
 const {
   conexaoMongo,
   interfaces,
-  repositorios
+  repositorios,
+  passport
 } = require("./src/api/config/servicos");
 const { middlewares, rotas } = require("./src/api/config/app");
 
@@ -23,6 +24,7 @@ const inicializarApp = async () => {
       then(controle),
       then(interfaces),
       then(repositorios),
+      passport,
       conexaoMongo
     );
     const _controle = await _c(conexao);

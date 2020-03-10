@@ -1,30 +1,30 @@
 const { retorno } = require("../../lib/util");
 
 /**
- * @module {listarClientes} - consulta para listar clientes cadastrados.
- * @param {consultaCliente} consultaCliente - serviço de consulta aos clientes.
+ * @module {listarUsuarios} - consulta para listar usuarios cadastrados.
+ * @param {consultaCliente} consultaCliente - serviço de consulta aos usuarios.
  */
 module.exports = consultaCliente => ({
   /**
    * Executar a consulta.
    * @function {executar} - função obrigatório (interface) para todos as consultas.
    *
-   * @returns {object} retorna objeto com a lista dos clientes: {status: {codigo: number, mensagem: string}, dados: Object[]}.
+   * @returns {object} retorna objeto com a lista dos usuarios: {status: {codigo: number, mensagem: string}, dados: Object[]}.
    */
   executar: async function() {
-    const r = await this.listarClientes();
+    const r = await this.listarUsuarios();
     return retorno(r.status.codigo, r.status.mensagem, {}, { dados: r.lista });
   },
 
   /**
-   * Listar os clientes.
-   * @function {listarClientes}
+   * Listar os usuarios.
+   * @function {listarUsuarios}
    *
    * @param {Object} dados
    *
    * @returns {Object} {status: {codigo: number, mensagem: string}, lista: Object[]}.
    */
-  listarClientes: async function() {
+  listarUsuarios: async function() {
     const r = await consultaCliente.listar();
     console.log(r);
     return retorno(
