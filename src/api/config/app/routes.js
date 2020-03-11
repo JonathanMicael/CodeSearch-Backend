@@ -11,18 +11,11 @@ module.exports = controle => app => {
   app.get("/", (_, res) =>
     res.status(200).json(retornoAPI(200, `CODESEARCH versão: ${pj.version}`))
   );
-  // Consultas
-  app.get(
-    "/usuarios",
-    async (req, res) => await controle.executar("listarUsuarios", req, res)
-  );
 
-  // Comandos
-  app.post(
-    "/usuarios",
-    async (req, res) => await controle.executar("gravarUsuario", req, res)
-  );
+  app.post("/usuarios",async (req, res) => await controle.executar("gravarUsuario", req, res));
   app.put('/usuarios', async (req, res) => await controle.executar('gravarUsuario', req, res));
-
+  app.get('/usuarios/:id', async (req, res) => await controle.executar('obterUsuario', req, res));
+  app.get('/usuarios', async (req, res) => await controle.executar('listarUsuarios', req, res));
+  
   return app;
 };

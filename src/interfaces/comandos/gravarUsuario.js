@@ -41,13 +41,13 @@ module.exports = repositorioUsuario => ({
     if (
       !parametro ||
       !parametro.nome ||
-      !parametro.identificacao ||
       !parametro.email ||
-      !parametro.senha
+      !parametro.senha ||
+      !parametro.role
     )
       return retorno(
         400,
-        "parâmetro inválido: {nome: string, identificacao: string, email: string, senha: string}"
+        "parâmetro inválido: {nome: string, email: string, senha: string}"
       );
 
     return retorno(200, "parâmetro válido.", {}, { dadosUsuario: parametro });

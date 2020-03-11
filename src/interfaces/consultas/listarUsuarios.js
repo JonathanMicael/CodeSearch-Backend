@@ -26,7 +26,6 @@ module.exports = consultaCliente => ({
    */
   listarUsuarios: async function() {
     const r = await consultaCliente.listar();
-    console.log(r);
     return retorno(
       r.status.codigo,
       r.status.mensagem,

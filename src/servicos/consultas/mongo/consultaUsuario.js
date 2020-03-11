@@ -19,7 +19,7 @@ module.exports = conexao => ({
       const l = a.map(i => ({
         id: i.id,
         nome: i.nome,
-        identificacao: i.identificacao,
+        bio: i.bio,
         email: i.email,
         senha: i.senha
       }));

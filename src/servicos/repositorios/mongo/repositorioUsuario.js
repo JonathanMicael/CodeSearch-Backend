@@ -102,9 +102,10 @@ module.exports = conexao => ({
         {
           $set: {
             nome: dadosUsuario.nome,
-            identificacao: dadosUsuario.identificacao,
             email: dadosUsuario.email,
-            senha: bcrypt.hashSync(dadosUsuario.senha, salt)
+            bio: dadosUsuario.bio,
+            senha: bcrypt.hashSync(dadosUsuario.senha, salt),
+            role: dadosUsuario.role
           }
         }
       );
