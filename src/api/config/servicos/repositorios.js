@@ -1,3 +1,4 @@
+const { repositorioUsuario } = require("../../../servicos/repositorios/mongo");
 const { consultaUsuario } = require("../../../servicos/consultas/mongo");
 
 /**
@@ -8,9 +9,12 @@ const { consultaUsuario } = require("../../../servicos/consultas/mongo");
 module.exports = conexao => {
   // Injetando conexão mongo nos repositórios e consultas
   const _consultaUsuario = consultaUsuario(conexao);
+  const _repositorioUsuario = repositorioUsuario(conexao);
   // Retornando um object literals com repositoios e consultas configurados
   return {
-    repositorios: {},
+    repositorios: {
+      repositorioUsuario: _repositorioUsuario
+    },
     consultas: {
       consultaUsuario: _consultaUsuario
     }
