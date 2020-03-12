@@ -161,6 +161,11 @@ const validarUF = (uf, mensagem, obrigatorio, erros) => {
   return ufs.includes(uf) ? erros : erros.concat([mensagem]);
 };
 
+const validarTamanhoMinimo = (valor, tamanhoMinimo, mensagem, erros) => {
+  if (!valor) return erros.concat([mensagem]);
+
+  return valor.length < tamanhoMinimo ? erros.concat([mensagem]) : erros;
+};
 const validarModelo = (valor, modeloConstructor, obrigatorio, erros) => {
   if (!obrigatorio && !valor) return erros;
   const e = modeloConstructor(valor).erros;
@@ -177,5 +182,6 @@ module.exports = {
   validarNomeSemEspecial: curry(validarNomeSemEspecial),
   validarModelo: curry(validarModelo),
   validarArray: curry(validarArray),
-  validarSenha: curry(validarSenha)
+  validarSenha: curry(validarSenha),
+  validarTamanhoMinimo: curry(validarTamanhoMinimo)
 };

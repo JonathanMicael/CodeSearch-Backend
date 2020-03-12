@@ -1,7 +1,11 @@
 const listarUsuarios = require("./listarUsuarios");
+const listarLogins = require("./listarLogins");
 const obterUsuario = require("./obterUsuario");
+const obterLogin = require("./obterLogin");
 
 module.exports = {
   listarUsuarios,
-  obterUsuario
+  listarLogins,
+  obterUsuario,
+  obterLogin
 };

@@ -14,6 +14,41 @@ module.exports = interfaces => ({
   executar: async (nomeMetodo, req, res) => {
     const requisicoes = {
       /**
+       * Requisição POST para incluir um login.
+       * @param {Object} req - requisição do express.
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
+       */
+      incluirLogin: async req => {
+        const { email, senha } = req.body;
+        const r = await interfaces.entradaComandos.executar("incluirLogin", {
+          email,
+          senha
+        });
+        return r;
+      },
+      /**
+       * Requisição GET para obter um login.
+       * @param {Object} req - requisição do express.
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
+       */
+      obterLogin: async req => {
+        const { id } = req.body;
+        const r = await interfaces.entradaConsultas.executar("obterLogin", {
+          id
+        });
+        return r;
+      },
+      /**
+       * Requisição GET para listar os logins.
+       * @param {Object} req - requisição do express.
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object[]}.
+       */
+      listarLogins: async req => {
+        const r = await interfaces.entradaConsultas.executar("listarLogins");
+        return r;
+      },
+
+      /**
        * Requisição POST para gravar um cliente.
        * @param {object} req - requisição do express.
        * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
@@ -30,7 +65,6 @@ module.exports = interfaces => ({
         });
         return r;
       },
-
       /**
        * Requisição GET para obter um usuario.
        * @param {object} req - web req data
@@ -43,7 +77,6 @@ module.exports = interfaces => ({
         });
         return r;
       },
-
       /**
        * Requisição GET para obter uma lista dos clientes.
        * @param {object} req - web req data
