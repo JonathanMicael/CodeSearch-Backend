@@ -24,7 +24,6 @@ module.exports = app => {
   );
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(passport.initialize());
   app.use(multer({ storage }).array("arquivos"));
 
   return app;
