@@ -90,7 +90,7 @@ module.exports = conexao => ({
           `[${err.message}]`,
           err
         );
-        return retorno(500, "erro interno ao inserir o cliente");
+        return retorno(500, "erro interno ao inserir o usuario");
       }
     };
 

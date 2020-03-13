@@ -7,7 +7,7 @@ const { retorno } = require("../../../lib/util");
 module.exports = conexao => ({
   /**
    * Listar os usuarios ordenados pelo nome.
-   * @returns {object} retorna objeto com a lista dos clientes: {status: {codigo: number, mensagem: string}, lista: Object[]}}.
+   * @returns {object} retorna objeto com a lista dos usuarios: {status: {codigo: number, mensagem: string}, lista: Object[]}}.
    */
   listar: async function() {
     const a = await conexao

@@ -2,14 +2,14 @@
 require("dotenv/config");
 const inicializarApp = require("./app");
 
+const porta = process.env.PORTA || 3001;
+
 // startar o server
 inicializarApp()
   .then(server => {
     // inicializar a escuta do server
-    server.listen(3001, () => {
-      console.log(
-        "CodeSearch backend está rodando na porta http://localhost:3001"
-      );
+    server.listen(porta, () => {
+      console.log(`CodeSearch backend está rodando na porta ${porta}`);
     });
   })
   .catch(erro => {

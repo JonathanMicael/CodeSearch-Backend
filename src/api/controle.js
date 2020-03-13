@@ -47,9 +47,62 @@ module.exports = interfaces => ({
         const r = await interfaces.entradaConsultas.executar("listarLogins");
         return r;
       },
+      /**
+       * Requisição PUT para inlucir uma nova entrada em um template.
+       * @param {object} req - requisição do express.
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object[]}.
+       */
+      alterarArquivos: async req => {
+        const { titulo } = req.body;
+        const r = await interfaces.entradaComandos.executar("alterarArquivos", {
+          titulo,
+          arquivos: req.files
+        });
+        return r;
+      },
 
       /**
-       * Requisição POST para gravar um cliente.
+       * Requisição GET para obter uma lista dos codigos.
+       * @param {object} req - web req data
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
+       */
+      listarCodigos: async req => {
+        const r = await interfaces.entradaConsultas.executar("listarCodigos");
+        return r;
+      },
+      /**
+       * Requisição POST para gravar um codigo.
+       * @param {object} req - requisição do express.
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
+       */
+      gravarCodigo: async req => {
+        const { id, autor, titulo, descricao, tecs, conteudo } = req.body;
+        const r = await interfaces.entradaComandos.executar("gravarCodigo", {
+          id,
+          autor,
+          titulo,
+          descricao,
+          tecs,
+          conteudo,
+          arquivos: req.files
+        });
+        return r;
+      },
+
+      /**
+       * Requisição POST para obter os codigos.
+       * @param {object} req - web req data
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: object}.
+       */
+      obterCodigos: async req => {
+        const { titulo } = req.body;
+        const r = await interfaces.entradaConsultas.executar("obterCodigos", {
+          titulo
+        });
+        return r;
+      },
+      /**
+       * Requisição POST para gravar um usuario.
        * @param {object} req - requisição do express.
        * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
        */
@@ -78,7 +131,7 @@ module.exports = interfaces => ({
         return r;
       },
       /**
-       * Requisição GET para obter uma lista dos clientes.
+       * Requisição GET para obter uma lista dos Usuarios.
        * @param {object} req - web req data
        * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
        */
