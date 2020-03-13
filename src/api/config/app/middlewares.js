@@ -1,6 +1,5 @@
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const passport = require("passport");
 const multer = require("multer");
 const uuid = require("uuid/v4");
 const path = require("path");
@@ -13,7 +12,7 @@ const storage = multer.diskStorage({
 });
 
 /**
- * Módulo para inserir os middlewares no app express.
+ * Módulo para inserir os middlewares no app express.SS
  * @param {express} app - app express.
  * @returns {express} app com middlewares injetados.
  */
