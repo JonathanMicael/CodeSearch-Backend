@@ -1,10 +1,12 @@
 const { entradaComandos, entradaConsultas } = require("../../../interfaces");
 
-const { gravarUsuario, incluirLogin } = require("../../../interfaces/comandos");
+const { gravarUsuario, gravarCodigo,  incluirLogin, alterarArquivos } = require("../../../interfaces/comandos");
 const {
   listarUsuarios,
+  listarCodigos,
   listarLogins,
   obterUsuario,
+  obterCodigos,
   obterLogin
 } = require("../../../interfaces/consultas");
 /**
@@ -13,18 +15,22 @@ const {
  * @returns {Oject} objeto com as interfaces criadas: {entradaComandos, entradaConsultas}.
  */
 module.exports = repositorios => {
-  const { repositorioUsuario, repositorioLogin } = repositorios.repositorios;
-  const { consultaUsuario, consultaLogin } = repositorios.consultas;
+  const { repositorioUsuario, repositorioLogin, repositorioCodigo } = repositorios.repositorios;
+  const { consultaUsuario, consultaLogin, consultaCodigo } = repositorios.consultas;
 
   const _comandos = {
     gravarUsuario: gravarUsuario(repositorioUsuario),
+    gravarCodigo: gravarCodigo(repositorioCodigo),
+    alterarArquivos: alterarArquivos(repositorioCodigo),
     incluirLogin: incluirLogin(repositorioLogin)
   };
 
   const _consultas = {
     listarUsuarios: listarUsuarios(consultaUsuario),
+    listarCodigos: listarCodigos(consultaCodigo),
     listarLogins: listarLogins(consultaLogin),
     obterUsuario: obterUsuario(repositorioUsuario),
+    obterCodigos: obterCodigos(repositorioCodigo),
     obterLogin: obterLogin(repositorioLogin)
   };
 

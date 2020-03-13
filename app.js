@@ -9,6 +9,8 @@ const {
 } = require("./src/api/config/servicos");
 const { middlewares, rotas } = require("./src/api/config/app");
 
+
+
 /**
  * Cria aplicação express configurada e com os serviços injetados.
  */

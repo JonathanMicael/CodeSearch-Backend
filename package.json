@@ -4,8 +4,10 @@
   "main": "index.js",
   "repository": "https://github.com/JonathanMicael/CodeSearch-Backend",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
+  "author": "Jonathan Micael",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.2",
@@ -16,10 +18,9 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.2",
+    "multer": "^1.4.2",
     "node-redis": "^0.1.7",
     "nodemon": "^2.0.2",
-    "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0",
     "ramda": "^0.26.1",
     "uuid": "^3.4.0"
   }

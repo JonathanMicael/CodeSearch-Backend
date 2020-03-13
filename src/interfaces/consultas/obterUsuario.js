@@ -49,7 +49,7 @@ module.exports = repositorioUsuario => ({
    *
    * @param {Object} dadosRetorno
    * @param {Object} dadosRetorno.obterUsuario
-   * @param {Object} dadosRetorno.obterUsuario.id - id do cliente.
+   * @param {Object} dadosRetorno.obterUsuario.id - id do usuario.
    *
    * @returns {Object} {status: {codigo: number, mensagem: string}, ...dados, retornoUsuario: Object}.
    */

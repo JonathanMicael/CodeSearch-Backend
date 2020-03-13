@@ -11,11 +11,12 @@ module.exports = {
   /**
    * Criar um novo usuario
    * @param {Object} dadosUsuario
-   * @param {string} dadosUsuario.id [opcional]- id do cliente.
-   * @param {string} dadosUsuario.nome - nome do cliente.
-   * @param {string} dadosUsuario.identificacao - identificacao do cliente.
-   * @param {string} dadosUsuario.email - CNPJ ou CPF do cliente.
-   * @param {string} dadosUsuario.senha - cidade do cliente.
+   * @param {string} dadosUsuario.id [opcional]- id do usuario.
+   * @param {string} dadosUsuario.nome - nome do usuario.
+   * @param {string} dadosUsuario.bio - bio do usuario.
+   * @param {string} dadosUsuario.email - email do usuario.
+   * @param {string} dadosUsuario.senha - senha do usuario.
+   * @param {string} dadosUsuario.role - role do usuario.
    * @returns {object} com dados do usuario gerado e array de erros: {dados: object, erros: string[]}
    */
   criar: function(dadosUsuario) {
@@ -38,7 +39,7 @@ module.exports = {
         const validar = pipe(
           validacao.validarUUID(
             dados.id,
-            "id do cliente no formato UUID V4 inválido",
+            "id do usuario no formato UUID V4 inválido",
             true
           ),
           validacao.validarNome(
