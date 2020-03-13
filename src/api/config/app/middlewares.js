@@ -19,7 +19,8 @@ const storage = multer.diskStorage({
 module.exports = app => {
   app.use(
     cors({
-      origin: ["*"]
+      origin: "*",
+      methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"]
     })
   );
   app.use(bodyParser.json());
