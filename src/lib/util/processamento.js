@@ -39,8 +39,3 @@ module.exports = (...fns) => parametroInicial => {
 	}, parametroInicial);
 };
 
-/*
-const composePromises = (...ms) => (
-	ms.reduce((f, g) => x => g(x).then(f))
-);
-*/

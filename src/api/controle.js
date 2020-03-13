@@ -13,11 +13,125 @@ module.exports = interfaces => ({
    */
   executar: async (nomeMetodo, req, res) => {
     const requisicoes = {
-      // gravarUsuario: function(req) {
-      //   const { name, username, email, password } = req.body;
-      // },
       /**
-       * Requisição GET para obter uma lista dos clientes.
+       * Requisição POST para incluir um login.
+       * @param {Object} req - requisição do express.
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
+       */
+      incluirLogin: async req => {
+        const { email, senha } = req.body;
+        const r = await interfaces.entradaComandos.executar("incluirLogin", {
+          email,
+          senha
+        });
+        return r;
+      },
+      /**
+       * Requisição GET para obter um login.
+       * @param {Object} req - requisição do express.
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
+       */
+      obterLogin: async req => {
+        const { id } = req.body;
+        const r = await interfaces.entradaConsultas.executar("obterLogin", {
+          id
+        });
+        return r;
+      },
+      /**
+       * Requisição GET para listar os logins.
+       * @param {Object} req - requisição do express.
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object[]}.
+       */
+      listarLogins: async req => {
+        const r = await interfaces.entradaConsultas.executar("listarLogins");
+        return r;
+      },
+      /**
+       * Requisição PUT para inlucir uma nova entrada em um template.
+       * @param {object} req - requisição do express.
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object[]}.
+       */
+      alterarArquivos: async req => {
+        const { titulo } = req.body;
+        const r = await interfaces.entradaComandos.executar("alterarArquivos", {
+          titulo,
+          arquivos: req.files
+        });
+        return r;
+      },
+
+      /**
+       * Requisição GET para obter uma lista dos codigos.
+       * @param {object} req - web req data
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
+       */
+      listarCodigos: async req => {
+        const r = await interfaces.entradaConsultas.executar("listarCodigos");
+        return r;
+      },
+      /**
+       * Requisição POST para gravar um codigo.
+       * @param {object} req - requisição do express.
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
+       */
+      gravarCodigo: async req => {
+        const { id, autor, titulo, descricao, tecs, conteudo } = req.body;
+        const r = await interfaces.entradaComandos.executar("gravarCodigo", {
+          id,
+          autor,
+          titulo,
+          descricao,
+          tecs,
+          conteudo,
+          arquivos: req.files
+        });
+        return r;
+      },
+
+      /**
+       * Requisição POST para obter os codigos.
+       * @param {object} req - web req data
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: object}.
+       */
+      obterCodigos: async req => {
+        const { titulo } = req.body;
+        const r = await interfaces.entradaConsultas.executar("obterCodigos", {
+          titulo
+        });
+        return r;
+      },
+      /**
+       * Requisição POST para gravar um usuario.
+       * @param {object} req - requisição do express.
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
+       */
+      gravarUsuario: async req => {
+        const { id, nome, bio, email, senha } = req.body;
+        const r = await interfaces.entradaComandos.executar("gravarUsuario", {
+          id,
+          nome,
+          bio,
+          email,
+          senha,
+          role: "usuario"
+        });
+        return r;
+      },
+      /**
+       * Requisição GET para obter um usuario.
+       * @param {object} req - web req data
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: object}.
+       */
+      obterUsuario: async req => {
+        const { id } = req.params;
+        const r = await interfaces.entradaConsultas.executar("obterUsuario", {
+          id
+        });
+        return r;
+      },
+      /**
+       * Requisição GET para obter uma lista dos Usuarios.
        * @param {object} req - web req data
        * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
        */

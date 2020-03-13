@@ -83,6 +83,22 @@ module.exports = {
         .collection("Usuarios")
         .createIndex({ id: 1 }, { unique: true, name: "id" });
 
+      await conexaoMongo.conexao
+        .collection("Usuarios")
+        .createIndex({ email: 1 }, { unique: true, name: "email" });
+
+      await conexaoMongo.conexao.collection('Codigos').createIndex(
+        { titulo: 1 }, { unique: true, name: 'codigoTitulo' }
+      );
+
+      await conexaoMongo.conexao
+        .collection("Logins")
+        .createIndex({ id: 1 }, { unique: true, name: "id" });
+
+      await conexaoMongo.conexao
+        .collection("Logins")
+        .createIndex({ token: 1 }, { unique: true, name: "token" });
+
       ok(conexaoMongo);
     });
   },
