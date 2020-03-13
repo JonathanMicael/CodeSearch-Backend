@@ -2,7 +2,7 @@
 require("dotenv/config");
 const inicializarApp = require("./app");
 
-const porta = process.env.PORTA || 3001;
+const porta = process.env.PORT || 3001;
 
 // startar o server
 inicializarApp()
