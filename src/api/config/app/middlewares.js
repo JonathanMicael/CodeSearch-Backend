@@ -1,15 +1,9 @@
 const bodyParser = require("body-parser");
+const express = require("express");
 const cors = require("cors");
-const multer = require("multer");
-const uuid = require("uuid/v4");
 const path = require("path");
-
-const storage = multer.diskStorage({
-  destination: path.resolve(__dirname, "..", "..", "..", "uploads"),
-  filename: (req, file, cb, filename) => {
-    cb(null, uuid() + path.extname(file.originalname));
-  }
-});
+const multer = require("multer");
+const multerConfig = require('./multerConfig')
 
 /**
  * Módulo para inserir os middlewares no app express.SS
@@ -25,7 +19,10 @@ module.exports = app => {
   );
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(multer({ storage }).array("arquivos"));
-
+  app.use(multer(multerConfig).single('arquivo'));
+  app.use(
+    "/files",
+    express.static(path.resolve(__dirname, "..", "..", "..", "tmp", "uploads"))
+  );
   return app;
 };

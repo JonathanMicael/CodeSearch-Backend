@@ -12,13 +12,11 @@ module.exports = (repositorioCodigo) => ({
 	 * @function {executar} - função obrigatório (interface) para todos os comandos.
 	 * 
 	 * @param {Object} parametro
-	 * @param {string} parametro.id - id do usuario.
 	 * @param {string} parametro.autor - autor do codigo.
 	 * @param {string} parametro.titulo - titulo do codigo.
 	 * @param {string} parametro.descricao - descricao do codigo.
 	 * @param {string} parametro.tecs - tecs do codigo.
 	 * @param {string} parametro.conteudo [opcional] - conteudo do codigo.
-	 * @param {string} parametro.arquivos [opcional] - arquivos do codigo.
    * 
 	 * 
 	 * @returns {Object}  {status: {codigo: number, mensagem: string}}.
@@ -40,8 +38,8 @@ module.exports = (repositorioCodigo) => ({
 	 * @returns {Object} {status: {codigo: number, mensagem: string}, ...parametro}.
 	 */
 	validarParametro: function (parametro) {
-		if (!parametro || !parametro.id || !parametro.autor || !parametro.titulo || !parametro.descricao || !parametro.tecs)
-			return retorno(400, 'parâmetro inválido: {id: string, autor: string, titulo: string, descricao: string, tecs: [strings]}');
+		if (!parametro || !parametro.autor || !parametro.titulo || !parametro.descricao || !parametro.tecs)
+			return retorno(400, 'parâmetro inválido: { autor: string, titulo: string, descricao: string, tecs: [strings], id: string }');
 
 		return retorno(200, 'parâmetro válido.', {}, { dadosCodigo: parametro });
 	},
