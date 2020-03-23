@@ -33,8 +33,8 @@ module.exports = (repositorioArquivo) => ({
 	 * @returns {Object} {status: {codigo: number, mensagem: string}, ...dados}.
 	 */
 	validarParametro: function (parametro) {
-		if (!parametro || typeof parametro.titulo === 'undefined')
-			return retorno(400, 'parâmetro inválido: {titulo: string}', parametro);
+		if (!parametro || typeof parametro.id === 'undefined')
+			return retorno(400, 'parâmetro inválido: {id: string}', parametro);
 
 		return retorno (200, 'parâmetro válido.', parametro, {dadosArquivo: parametro});
 	},
@@ -50,7 +50,8 @@ module.exports = (repositorioArquivo) => ({
 	 * @returns {Object} {status: {codigo: number, mensagem: string}, ...dados, retornoCodigo: Object}.
 	 */
 	obterArquivo: async function(dadosRetorno) {
-		const r = await repositorioArquivo.obter(dadosRetorno.dadosArquivo);
+		const r = await repositorioArquivo.obterPorId(dadosRetorno.dadosArquivo);
+		console.log(r)
 		return retorno(r.status.codigo, r.status.mensagem, dadosRetorno, { arquivo: r.arquivo || {} });
 	}
 

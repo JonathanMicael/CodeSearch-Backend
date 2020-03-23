@@ -79,19 +79,14 @@ module.exports = conexao => ({
 
     const recuperarArquivo = async dadosRetorno => {
       if (dadosRetorno.status.codigo === 200) {
-        const r = await conexao.collection("Arquivos").findOne({
-          $or: [
-            { id: dadosRetorno.dadosArquivo.id },
-            { titulo: dadosRetorno.dadosArquivo.titulo }
-          ]
-        });
+        const r = await conexao.collection("Arquivos").findOne({ id: dadosRetorno.dadosArquivo.id });
         if (r) {
           const ac = await arquivo.criar(r);
           if (ac.dados)
             return retorno(
               200,
               "arquivos recuperados com sucesso.",
-              {},
+                ac.dados,
               { arquivo: ac.dados }
             );
           else

@@ -21,7 +21,7 @@ module.exports = conexao => ({
         nome: i.nome,
         bio: i.bio,
         email: i.email,
-        senha: i.senha
+        permissoes: i.permissoes
       }));
 
       return retorno(200, "lista de usuarios recuperada.", {}, { lista: l });

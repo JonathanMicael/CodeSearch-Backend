@@ -25,7 +25,7 @@ module.exports = repositorios => {
     gravarUsuario: gravarUsuario(repositorioUsuario),
     gravarCodigo: gravarCodigo(repositorioCodigo),
     gravarArquivo: gravarArquivo(repositorioArquivo),
-    incluirLogin: incluirLogin(repositorioLogin),
+    // incluirLogin: incluirLogin(repositorioLogin),
     apagarCodigo: apagarCodigo(repositorioCodigo),
     apagarArquivo: apagarArquivo(repositorioArquivo),
     alterarArquivo: alterarArquivo(repositorioArquivo)
@@ -35,7 +35,7 @@ module.exports = repositorios => {
     listarUsuarios: listarUsuarios(consultaUsuario),
     listarCodigos: listarCodigos(consultaCodigo),
     listarArquivos: listarArquivos(consultaArquivo),
-    listarLogins: listarLogins(consultaArquivo),
+    // listarLogins: listarLogins(consultaArquivo),
     obterUsuario: obterUsuario(repositorioUsuario),
     obterCodigos: obterCodigos(repositorioCodigo),
     obterArquivos: obterArquivos(repositorioArquivo),

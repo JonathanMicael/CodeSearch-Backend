@@ -12,9 +12,10 @@ module.exports = controle => app => {
     res.status(200).json(retornoAPI(200, `CODESEARCH versão: ${pj.version}`))
   );
 
-  app.post("/usuarios",async (req, res) => await controle.executar("gravarUsuario", req, res));
-  app.put('/usuarios', async (req, res) => await controle.executar('gravarUsuario', req, res));
+  app.post("/usuario",async (req, res) => await controle.executar("gravarUsuario", req, res));
+  app.put('/usuario/:id', async (req, res) => await controle.executar('gravarUsuario', req, res));
   app.get('/usuarios/:id', async (req, res) => await controle.executar('obterUsuario', req, res));
+  app.get('/usuarios', async (req, res) => await controle.executar('listarUsuarios', req, res));
 
   app.get("/codigos",async (req, res) => await controle.executar("listarCodigos", req, res));
   app.get("/codigo/:id",async (req, res) => await controle.executar("obterCodigos", req, res));
@@ -25,7 +26,7 @@ module.exports = controle => app => {
   app.get("/arquivos",async (req, res) => await controle.executar("listarArquivos", req, res));
   app.post("/arquivo",async (req, res) => await controle.executar("gravarArquivo", req, res));
   app.put("/arquivo/:id", async (req, res) => await controle.executar("alterarArquivo", req, res));
-  app.post("/arquivos", async (req, res) => await controle.executar("obterArquivos", req, res));
+  app.get("/arquivos/:id", async (req, res) => await controle.executar("obterArquivos", req, res));
   app.delete("/arquivo/:id", async (req, res) => await controle.executar("apagarArquivo", req, res));
   
   

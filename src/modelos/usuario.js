@@ -25,10 +25,10 @@ module.exports = {
       return [
         criarCampo("id", dadosUsuario.id, null, uuid(), ""),
         criarCampo("nome", dadosUsuario.nome, compose(trim), ""),
-        criarCampo("bio", dadosUsuario.bio, compose(trim), ""),
+        criarCampo("bio", dadosUsuario.bio, null, ""),
         criarCampo("email", dadosUsuario.email, compose(trim), ""),
         criarCampo("senha", dadosUsuario.senha, compose(trim), ""),
-        criarCampo("role", dadosUsuario.role, null, "")
+        criarCampo("permissoes", null, null, ['usuario'])
       ].reduce((ac, at) => (ac = { ...ac, ...at }), {});
     };
 

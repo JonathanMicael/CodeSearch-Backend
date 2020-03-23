@@ -51,19 +51,20 @@ module.exports = interfaces => ({
         return r;
       },
       /**
-       * Requisição POST e PUT para gravar um Codigo ou alterar um Codigo.
+       * Requisição POST e PUT para gravar um Arquivo ou alterar um Arquivo.
        * @param {object} req - requisição do express.
        * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
        */
       gravarArquivo: async req => {
+        const { id } = req.params;
+        const { titulo } = req.body;
         const {
           originalname: nome,
           size: tamanho,
           filename: chave,
           path: url = "vazio"
         } = req.file;
-        const { id } = req.params;
-        const { titulo } = req.body;
+
         const r = await interfaces.entradaComandos.executar("gravarArquivo", {
           id,
           titulo,
@@ -164,9 +165,17 @@ module.exports = interfaces => ({
           nome,
           bio,
           email,
-          senha,
-          role: "usuario"
+          senha
         });
+        return r;
+      },
+      /**
+       * Requisição GET para obter uma lista dos usuarios.
+       * @param {object} req - web req data
+       * @returns {Object} {status: {codigo: number, mensagem: string}, dados: Object}.
+       */
+      listarUsuarios: async req => {
+        const r = await interfaces.entradaConsultas.executar("listarUsuarios");
         return r;
       },
       /**

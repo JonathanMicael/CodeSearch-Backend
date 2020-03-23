@@ -44,7 +44,7 @@ module.exports = {
         validacao.validarUUID(d.id, 'id do codigo no formato UUID V4 inválido', true),
         validacao.validarNome(d.autor,"autor do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",true),
         validacao.validarNome(d.titulo,"titulo do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",true),
-        validacao.validarNome(d.descricao,"descrição do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",true),
+        validacao.validarNome(d.descricao,"descrição do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",false),
         validacao.validarArray(d.tecs,"as tecnologias deve ser do tipo array separado por virgulas"),
         validacao.validarNome(d.conteudo,"conteudo do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",false))
         (erros)
