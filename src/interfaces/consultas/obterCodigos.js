@@ -32,10 +32,10 @@ module.exports = (repositorioCodigo) => ({
 	 * @returns {Object} {status: {codigo: number, mensagem: string}, ...dados}.
 	 */
 	validarParametro: function (parametro) {
-		if (!parametro || typeof parametro.titulo === 'undefined')
-			return retorno(400, 'parâmetro inválido: {titulo: string}', parametro);
+		if (!parametro || typeof parametro.id === 'undefined')
+			return retorno(400, 'parâmetro inválido: {id: string}', parametro);
 
-		return retorno (200, 'parâmetro válido.', parametro, {dadosCodigos: {titulo: parametro.titulo}});
+		return retorno (200, 'parâmetro válido.', parametro, {dadosCodigos: {id: parametro.id}});
 	},
 
 	/**
@@ -45,7 +45,6 @@ module.exports = (repositorioCodigo) => ({
 	 * @param {Object} dadosRetorno
 	 * @param {Object} dadosRetorno.dadosCodigos
 	 * @param {Object} dadosRetorno.dadosCodigos.id - id dos codigos.
-	 * @param {Object} dadosRetorno.dadosCodigos.titulo - titulo dos codigos.
 	 * 
 	 * @returns {Object} {status: {codigo: number, mensagem: string}, ...dados, retornoCodigo: Object}.
 	 */

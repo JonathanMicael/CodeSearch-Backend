@@ -1,29 +1,28 @@
 const bodyParser = require("body-parser");
+const express = require("express");
 const cors = require("cors");
-const passport = require("passport");
-const multer = require('multer');
-const uuid = require('uuid/v4')
-const path = require('path')
-
-const storage = multer.diskStorage({
-  destination: path.resolve(__dirname, '..', '..','..', 'uploads'),
-  filename: (req, file, cb, filename) => {
-      cb(null, uuid() + path.extname(file.originalname));
-  }
-});
-
+const path = require("path");
+const multer = require("multer");
+const multerConfig = require('./multerConfig')
 
 /**
- * Módulo para inserir os middlewares no app express.
+ * Módulo para inserir os middlewares no app express.SS
  * @param {express} app - app express.
  * @returns {express} app com middlewares injetados.
  */
 module.exports = app => {
-  app.use(cors());
+  app.use(
+    cors({
+      origin: "*",
+      methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"]
+    })
+  );
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(passport.initialize());
-  app.use(multer({storage}).array('arquivos'));
-
+  app.use(multer(multerConfig).single('arquivo'));
+  app.use(
+    "/files",
+    express.static(path.resolve(__dirname, "..", "..", "..", "tmp", "uploads"))
+  );
   return app;
 };

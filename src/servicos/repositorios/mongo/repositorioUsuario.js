@@ -104,8 +104,7 @@ module.exports = conexao => ({
             nome: dadosUsuario.nome,
             email: dadosUsuario.email,
             bio: dadosUsuario.bio,
-            senha: bcrypt.hashSync(dadosUsuario.senha, salt),
-            role: dadosUsuario.role
+            senha: bcrypt.hashSync(dadosUsuario.senha, salt)
           }
         }
       );

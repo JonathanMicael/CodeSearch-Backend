@@ -42,9 +42,8 @@ module.exports = repositorioUsuario => ({
       !parametro ||
       !parametro.nome ||
       !parametro.email ||
-      !parametro.senha ||
-      !parametro.role
-    )
+      !parametro.senha
+      )
       return retorno(
         400,
         "parâmetro inválido: {nome: string, email: string, senha: string}"

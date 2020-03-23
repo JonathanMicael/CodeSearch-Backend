@@ -1,4 +1,4 @@
 node_modules
 .env
 yarn.lock
-src/uploads
+src/tmp/uploads/*
