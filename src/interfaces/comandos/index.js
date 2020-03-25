@@ -2,7 +2,7 @@ const gravarUsuario = require("./gravarUsuario");
 const gravarCodigo = require("./gravarCodigo");
 const gravarArquivo = require("./gravarArquivo");
 
-const incluirLogin = require("./incluirLogin");
+const logarUsuario = require("./logarUsuario");
 const alterarArquivo = require("./alterarArquivo");
 
 const apagarCodigo = require("./apagarCodigo");
@@ -15,6 +15,6 @@ module.exports = {
   gravarArquivo,
   apagarArquivo,
   apagarCodigo,
-  incluirLogin,
+  logarUsuario,
   alterarArquivo,
 };
