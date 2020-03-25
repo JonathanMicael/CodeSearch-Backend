@@ -1,3 +1,5 @@
+const jwt = require("jsonwebtoken");
+const configuracao = process.env.SEGREDO;
 const { usuario } = require("../../modelos");
 const { processamento, retorno } = require("../../lib/util");
 
@@ -26,7 +28,7 @@ module.exports = repositorioUsuario => ({
     );
     const r = await p(parametro);
 
-    return retorno(r.status.codigo, r.status.mensagem);
+    return retorno(r.status.codigo, r.status.mensagem, r);
   },
 
   /**
@@ -88,7 +90,12 @@ module.exports = repositorioUsuario => ({
   gravarUsuario: async function(dadosRetorno) {
     if (dadosRetorno.status.codigo === 200) {
       const r = await repositorioUsuario.gravar(dadosRetorno.usuario);
-      return retorno(r.status.codigo, r.status.mensagem, dadosRetorno);
+
+      const token = jwt.sign({ id: dadosRetorno.usuario.id }, configuracao, {
+        expiresIn: 86400
+      })
+
+      return retorno(r.status.codigo, r.status.mensagem, dadosRetorno, { dados: {...dadosRetorno.usuario, senha: '', token}});
     }
     return dadosRetorno;
   }
