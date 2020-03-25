@@ -1,15 +1,13 @@
 const { entradaComandos, entradaConsultas } = require("../../../interfaces");
 
-const { gravarUsuario, gravarCodigo, gravarArquivo, incluirLogin, apagarCodigo, apagarArquivo, alterarArquivo } = require("../../../interfaces/comandos");
+const { gravarUsuario, gravarCodigo, gravarArquivo, apagarCodigo, apagarArquivo, alterarArquivo, logarUsuario } = require("../../../interfaces/comandos");
 const {
   listarUsuarios,
   listarCodigos,
   listarArquivos,
-  listarLogins,
   obterUsuario,
   obterCodigos,
   obterArquivos,
-  obterLogin
 } = require("../../../interfaces/consultas");
 
 /**
@@ -18,14 +16,14 @@ const {
  * @returns {Oject} objeto com as interfaces criadas: {entradaComandos, entradaConsultas}.
  */
 module.exports = repositorios => {
-  const { repositorioUsuario, repositorioLogin, repositorioCodigo,  repositorioArquivo} = repositorios.repositorios;
-  const { consultaUsuario, consultaLogin, consultaCodigo, consultaArquivo } = repositorios.consultas;
+  const { repositorioUsuario, repositorioCodigo,  repositorioArquivo} = repositorios.repositorios;
+  const { consultaUsuario, consultaCodigo, consultaArquivo } = repositorios.consultas;
 
   const _comandos = {
     gravarUsuario: gravarUsuario(repositorioUsuario),
     gravarCodigo: gravarCodigo(repositorioCodigo),
     gravarArquivo: gravarArquivo(repositorioArquivo),
-    // incluirLogin: incluirLogin(repositorioLogin),
+    logarUsuario: logarUsuario(repositorioUsuario),
     apagarCodigo: apagarCodigo(repositorioCodigo),
     apagarArquivo: apagarArquivo(repositorioArquivo),
     alterarArquivo: alterarArquivo(repositorioArquivo)
@@ -35,11 +33,9 @@ module.exports = repositorios => {
     listarUsuarios: listarUsuarios(consultaUsuario),
     listarCodigos: listarCodigos(consultaCodigo),
     listarArquivos: listarArquivos(consultaArquivo),
-    // listarLogins: listarLogins(consultaArquivo),
     obterUsuario: obterUsuario(repositorioUsuario),
     obterCodigos: obterCodigos(repositorioCodigo),
     obterArquivos: obterArquivos(repositorioArquivo),
-    obterLogin: obterLogin(repositorioLogin)
   };
 
   const _entradaComandos = entradaComandos(_comandos);

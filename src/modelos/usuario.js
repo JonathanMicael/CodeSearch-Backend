@@ -1,7 +1,7 @@
 const uuid = require("uuid/v4");
 const bcrypt = require("bcrypt");
 const { criarCampo, imutavel, validacao } = require("../lib/util");
-const { compose, pipe, replace, toUpper, trim } = require("ramda");
+const { compose, pipe, replace, toLower, trim } = require("ramda");
 
 const salt = bcrypt.genSaltSync(10);
 /**
@@ -26,7 +26,7 @@ module.exports = {
         criarCampo("id", dadosUsuario.id, null, uuid(), ""),
         criarCampo("nome", dadosUsuario.nome, compose(trim), ""),
         criarCampo("bio", dadosUsuario.bio, null, ""),
-        criarCampo("email", dadosUsuario.email, compose(trim), ""),
+        criarCampo("email", dadosUsuario.email, compose(trim, toLower), ""),
         criarCampo("senha", dadosUsuario.senha, compose(trim), ""),
         criarCampo("permissoes", null, null, ['usuario'])
       ].reduce((ac, at) => (ac = { ...ac, ...at }), {});
