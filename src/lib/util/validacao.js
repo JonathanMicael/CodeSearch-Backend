@@ -14,13 +14,6 @@ const validarTitulo = (titulo, mensagem, obrigatorio, erros) => {
     ? erros
     : erros.concat([mensagem]);
 };
-const validarConteudo = (conteudo, mensagem, obrigatorio, erros) => {
-  if (!obrigatorio && !conteudo) return erros;
-
-  return /^([a-zA-Zà-úÀ-Ú0-9,.?!/|}{^~;:@#$%¨&*()"'--_=+<>^ ]{2,1000})$/.test(conteudo)
-    ? erros
-    : erros.concat([mensagem]);
-};
 const validarEmail = (email, mensagem, obrigatorio, erros) => {
   if (!obrigatorio && !email) return erros;
 
@@ -86,5 +79,4 @@ module.exports = {
   validarTamanhoMinimo: curry(validarTamanhoMinimo),
   validarTitulo: curry(validarTitulo),
   validarEmail: curry(validarEmail),
-  validarConteudo: curry(validarConteudo),
 };
