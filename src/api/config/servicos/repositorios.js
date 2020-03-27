@@ -1,12 +1,12 @@
 const {
   repositorioUsuario,
   repositorioArquivo,
-  repositorioCodigo,
+  repositorioCodigo
 } = require("../../../servicos/repositorios/mongo");
 const {
   consultaUsuario,
   consultaArquivo,
-  consultaCodigo,
+  consultaCodigo
 } = require("../../../servicos/consultas/mongo");
 
 /**
@@ -27,12 +27,12 @@ module.exports = conexao => {
     repositorios: {
       repositorioUsuario: _repositorioUsuario,
       repositorioCodigo: _repositorioCodigo,
-      repositorioArquivo: _repositorioArquivo,
+      repositorioArquivo: _repositorioArquivo
     },
     consultas: {
       consultaUsuario: _consultaUsuario,
       consultaCodigo: _consultaCodigo,
-      consultaArquivo: _consultaArquivo,
+      consultaArquivo: _consultaArquivo
     }
   };
 };

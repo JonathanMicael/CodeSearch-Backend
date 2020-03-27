@@ -29,31 +29,56 @@ module.exports = {
 
     const criarObjeto = dadosCodigo => {
       return [
-        criarCampo('id', dadosCodigo.id, null, uuid(), ''),
+        criarCampo("id", dadosCodigo.id, null, uuid(), ""),
         criarCampo("autor", dadosCodigo.autor, compose(trim), ""),
         criarCampo("titulo", dadosCodigo.titulo, compose(trim), ""),
-        criarCampo("descricao", dadosCodigo.descricao, compose(trim), ""),
+        criarCampo("descricao", dadosCodigo.descricao, null, ""),
         criarCampo("tecs", dadosCodigo.tecs, null, []),
-        criarCampo("conteudo", dadosCodigo.conteudo, compose(trim), "")
+        criarCampo("conteudo", dadosCodigo.conteudo, compose(trim), ""),
+        criarCampo("favoritos", dadosCodigo.favoritos, null, [])
       ].reduce((ac, at) => (ac = { ...ac, ...at }), {});
     };
 
     const validarCampos = (dadosCodigo, erros) => {
-			const d = dadosCodigo || {};
+      const d = dadosCodigo || {};
       return pipe(
-        validacao.validarUUID(d.id, 'id do codigo no formato UUID V4 inválido', true),
-        validacao.validarNome(d.autor,"autor do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",true),
-        validacao.validarNome(d.titulo,"titulo do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",true),
-        validacao.validarNome(d.descricao,"descrição do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",false),
-        validacao.validarArray(d.tecs,"as tecnologias deve ser do tipo array separado por virgulas"),
-        validacao.validarNome(d.conteudo,"conteudo do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",false))
-        (erros)
-		};
+        validacao.validarUUID(
+          d.id,
+          "id do codigo no formato UUID V4 inválido",
+          true
+        ),
+        validacao.validarNome(
+          d.autor,
+          "autor do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",
+          true
+        ),
+        validacao.validarTitulo(
+          d.titulo,
+          "titulo do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",
+          true
+        ),
+        validacao.validarNome(
+          d.descricao,
+          "descrição do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",
+          false
+        ),
+        validacao.validarArray(
+          d.tecs,
+          "as tecnologias deve ser do tipo array separado por virgulas"
+        ),
+        validacao.validarNome(
+          d.conteudo,
+          "conteudo do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",
+          false
+        ),
+        validacao.validarArray(d.favoritos, "favoritos deve ser do tipo array")
+      )(erros);
+    };
 
-		const dados = criarObjeto(dadosCodigo);
+    const dados = criarObjeto(dadosCodigo);
     const erros = validarCampos(dados, []);
-    
-		return { dados: (erros.length > 0 ? null : imutavel(dados)), erros };
+
+    return { dados: erros.length > 0 ? null : imutavel(dados), erros };
   },
 
   /**
@@ -62,5 +87,5 @@ module.exports = {
    */
   atualizar: function(codigo, valores) {
     return this.criar({ ...codigo, ...valores });
-  },
+  }
 };

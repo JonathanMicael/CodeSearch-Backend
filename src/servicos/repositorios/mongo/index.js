@@ -5,5 +5,5 @@ const repositorioArquivo = require("./repositorioArquivo");
 module.exports = {
   repositorioUsuario,
   repositorioCodigo,
-  repositorioArquivo,
+  repositorioArquivo
 };

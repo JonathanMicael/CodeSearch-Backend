@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const multer = require("multer");
-const multerConfig = require('./multerConfig')
+const multerConfig = require("./multerConfig");
 
 /**
  * Módulo para inserir os middlewares no app express.SS
@@ -19,7 +19,7 @@ module.exports = app => {
   );
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(multer(multerConfig).single('arquivo'));
+  app.use(multer(multerConfig).single("arquivo"));
   app.use(
     "/files",
     express.static(path.resolve(__dirname, "..", "..", "..", "tmp", "uploads"))

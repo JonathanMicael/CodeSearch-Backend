@@ -7,6 +7,20 @@ const validarNome = (nome, mensagem, obrigatorio, erros) => {
     ? erros
     : erros.concat([mensagem]);
 };
+const validarTitulo = (titulo, mensagem, obrigatorio, erros) => {
+  if (!obrigatorio && !titulo) return erros;
+
+  return /^([a-zA-Zà-úÀ-Ú0-9,.?!/|}{^~;:@#$%¨&*()"'--_=+^ ]{2,250})$/.test(titulo)
+    ? erros
+    : erros.concat([mensagem]);
+};
+const validarEmail = (email, mensagem, obrigatorio, erros) => {
+  if (!obrigatorio && !email) return erros;
+
+  return /(\W|^)[\w.+\-]*@compasso\.com\.br(\W|$)/.test(email)
+    ? erros
+    : erros.concat([mensagem]);
+};
 
 const validarNomeSemEspecial = (nome, mensagem, obrigatorio, erros) => {
   if (!obrigatorio && !nome) return erros;
@@ -37,13 +51,11 @@ const validarArray = (array, mensagem, erros) => {
   return Array.isArray(array) ? erros : erros.concat([mensagem]);
 };
 
-
 const validarObrigatorio = (valor, mensagem, erros) => {
   if (valor) return erros.concat([mensagem]);
 
   return isEmpty(valor) ? erros.concat([mensagem]) : erros;
 };
-
 
 const validarTamanhoMinimo = (valor, tamanhoMinimo, mensagem, erros) => {
   if (!valor) return erros.concat([mensagem]);
@@ -64,5 +76,7 @@ module.exports = {
   validarModelo: curry(validarModelo),
   validarArray: curry(validarArray),
   validarSenha: curry(validarSenha),
-  validarTamanhoMinimo: curry(validarTamanhoMinimo)
+  validarTamanhoMinimo: curry(validarTamanhoMinimo),
+  validarTitulo: curry(validarTitulo),
+  validarEmail: curry(validarEmail),
 };

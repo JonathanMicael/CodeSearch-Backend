@@ -25,27 +25,35 @@ module.exports = {
 
     const criarObjeto = dadosArquivo => {
       return [
-        criarCampo('id', dadosArquivo.id, null, uuid(), ''),
+        criarCampo("id", dadosArquivo.id, null, uuid(), ""),
         criarCampo("nome", dadosArquivo.nome, null, ""),
         criarCampo("titulo", dadosArquivo.titulo, compose(trim), ""),
         criarCampo("tamanho", dadosArquivo.tamanho, null, ""),
         criarCampo("chave", dadosArquivo.chave, null, ""),
-        criarCampo("url", dadosArquivo.url, null, ""),
+        criarCampo("url", dadosArquivo.url, null, "")
       ].reduce((ac, at) => (ac = { ...ac, ...at }), {});
     };
 
     const validarCampos = (dadosArquivo, erros) => {
-			const d = dadosArquivo || {};
+      const d = dadosArquivo || {};
       return pipe(
-        validacao.validarUUID(d.id, 'id do arquivo no formato UUID V4 inválido', true),
-        validacao.validarNome(d.titulo,"titulo do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",true))
-        (erros)
-		};
+        validacao.validarUUID(
+          d.id,
+          "id do arquivo no formato UUID V4 inválido",
+          true
+        ),
+        validacao.validarNome(
+          d.titulo,
+          "titulo do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",
+          true
+        )
+      )(erros);
+    };
 
-		const dados = criarObjeto(dadosArquivo);
+    const dados = criarObjeto(dadosArquivo);
     const erros = validarCampos(dados, []);
-    
-		return { dados: (erros.length > 0 ? null : imutavel(dados)), erros };
+
+    return { dados: erros.length > 0 ? null : imutavel(dados), erros };
   },
 
   /**

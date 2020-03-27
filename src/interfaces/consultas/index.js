@@ -15,5 +15,5 @@ module.exports = {
   obterUsuario,
   obterCodigos,
   obterArquivos,
-  obterLogin,
+  obterLogin
 };
