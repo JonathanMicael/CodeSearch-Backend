@@ -10,8 +10,12 @@ module.exports = conexao => ({
    * @returns {object} retorna objeto com a lista dos codigos: {status: {codigo: number, mensagem: string}, lista: Object[]}}.
    */
   listar: async function() {
-    const a = await conexao.collection('Codigos').find({}).sort({titulo: 1}).toArray();
-    if(a.length > 0) {
+    const a = await conexao
+      .collection("Codigos")
+      .find({})
+      .sort({ titulo: 1 })
+      .toArray();
+    if (a.length > 0) {
       const l = a.map(i => ({
         id: i.id,
         autor: i.autor,
@@ -19,7 +23,8 @@ module.exports = conexao => ({
         descricao: i.descricao,
         tecs: i.tecs,
         conteudo: i.conteudo,
-      }))
+        favoritos: i.favoritos
+      }));
       return retorno(200, "lista de codigos recuperada.", {}, { lista: l });
     }
     return retorno(404, "nenhum codigos cadastrado.");

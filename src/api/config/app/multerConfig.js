@@ -21,14 +21,13 @@ const storageTypes = {
 
 module.exports = {
   dest: path.resolve(__dirname, "..", "..", "..", "tmp", "uploads"),
-  storage: storageTypes['local'],
+  storage: storageTypes["local"],
   limits: {
     fileSize: 5 * 1024 * 1024
   },
   fileFilter: (req, file, cb) => {
-
     if (!file.originalname.match(/\.*$/)) {
-        return cb(new Error('Only image files are allowed!'), false);
+      return cb(new Error("Only image files are allowed!"), false);
     } else {
       cb(null, true);
     }

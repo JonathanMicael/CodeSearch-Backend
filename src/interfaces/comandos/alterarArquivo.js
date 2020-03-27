@@ -1,6 +1,6 @@
 const { processamento, retorno } = require("../../lib/util");
-const path = require('path');
-const fs = require('fs');
+const path = require("path");
+const fs = require("fs");
 /**
  * @module {alterarArquivo} - comando para alterar um arquivo de configuração.
  * @param {repositorioArquivo} repositorioArquivo - repositório de arquivo.
@@ -55,7 +55,7 @@ module.exports = repositorioArquivo => ({
 
     return retorno(200, "parâmetro válido.", {}, { dadosArquivo: parametro });
   },
- /**
+  /**
    * Verifica o arquivos locais com dados do arquivo.
    * @function {verificaArquivo}
    *
@@ -68,22 +68,16 @@ module.exports = repositorioArquivo => ({
     const r = await repositorioArquivo.obter(dadosRetorno.dadosArquivo);
     try {
       if (r.status.codigo === 200) {
-        fs.unlinkSync(path.resolve(__dirname,"..","..","tmp","uploads", r.arquivo.chave));
-				return retorno(200, "arquivo apagado", dadosRetorno);
-			} else {
-        return retorno(
-          404,
-          "os arquivos nao exitem",
-          dadosRetorno,
+        fs.unlinkSync(
+          path.resolve(__dirname, "..", "..", "tmp", "uploads", r.arquivo.chave)
         );
+        return retorno(200, "arquivo apagado", dadosRetorno);
+      } else {
+        return retorno(404, "os arquivos nao exitem", dadosRetorno);
       }
     } catch (error) {
-			return retorno(
-				500,
-				"erro interno no servidor",
-				dadosRetorno,
-			);
-		}
+      return retorno(500, "erro interno no servidor", dadosRetorno);
+    }
   },
   /**
    * Alterar um arquivo.
@@ -96,7 +90,9 @@ module.exports = repositorioArquivo => ({
    */
   alterarArquivo: async function(dadosRetorno) {
     if (dadosRetorno.status.codigo === 200) {
-      const r = await repositorioArquivo.alterarArquivo(dadosRetorno.dadosArquivo);
+      const r = await repositorioArquivo.alterarArquivo(
+        dadosRetorno.dadosArquivo
+      );
       return retorno(r.status.codigo, r.status.mensagem);
     }
     return dadosRetorno;
