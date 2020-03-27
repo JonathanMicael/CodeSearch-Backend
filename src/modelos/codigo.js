@@ -66,7 +66,7 @@ module.exports = {
           d.tecs,
           "as tecnologias deve ser do tipo array separado por virgulas"
         ),
-        validacao.validarNome(
+        validacao.validarConteudo(
           d.conteudo,
           "conteudo do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",
           false
