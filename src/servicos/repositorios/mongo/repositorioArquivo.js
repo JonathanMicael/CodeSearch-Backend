@@ -61,52 +61,6 @@ module.exports = conexao => ({
     return await processarObter(dadosArquivo);
   },
   /**
-   * Obtém arquivo pelo id.
-   * @function {obterPorId}
-   *
-   * @param {Object} dadosArquivo
-   * @param {string} dadosArquivo.id - id do arquivo para busca.
-   *
-   * @returns {object} {status: {codigo: number, mensagem: string}, arquivo: Object}.
-   */
-  obterPorId: async function(dadosArquivo) {
-    const validarParametros = dadosArquivo => {
-      if (!dadosArquivo || !dadosArquivo.id)
-        return retorno(400, "dados do arquivo inválido: {id: string}");
-
-      return retorno(200, "", {}, { dadosArquivo });
-    };
-
-    const recuperarArquivo = async dadosRetorno => {
-      if (dadosRetorno.status.codigo === 200) {
-        const r = await conexao.collection("Arquivos").findOne({ id: dadosRetorno.dadosArquivo.id });
-        if (r) {
-          const ac = await arquivo.criar(r);
-          if (ac.dados)
-            return retorno(
-              200,
-              "arquivos recuperados com sucesso.",
-                ac.dados,
-              { arquivo: ac.dados }
-            );
-          else
-            return retorno(
-              400,
-              "arquivo com dados inconsistentes.",
-              {},
-              {},
-              ac.erros
-            );
-        }
-        return retorno(404, "arquivos nao encontrados.");
-      }
-      return dadosRetorno;
-    };
-    // Processar ....
-    const processarObter = compose(recuperarArquivo, validarParametros);
-    return await processarObter(dadosArquivo);
-  },
-  /**
    * Insere um novo arquivo ou altera um arquivo existente.
    * @function {gravar}
    *
@@ -143,7 +97,6 @@ module.exports = conexao => ({
     };
 
     const alterarArquivo = async dadosArquivo => {
-      
       const r = await conexao.collection("Arquivos").updateOne(
         { id: dadosArquivo.id },
         {
@@ -170,7 +123,7 @@ module.exports = conexao => ({
       if (retornoArquivo.dados) {
         const r = await this.obter(retornoArquivo.dados);
         if (![200, 404].includes(r.status.codigo)) return r;
-        
+
         return r.status.codigo === 200
           ? await alterarArquivo({ ...retornoArquivo.dados })
           : await inserirArquivo({ ...retornoArquivo.dados });
@@ -191,51 +144,70 @@ module.exports = conexao => ({
     return await processarGravar(dadosArquivo);
   },
   /**
-	 * Alterar um arquivo.
-	 * @function {alterarArquivo}
-	 * 
-	 * @param {Object} dadosArquivo - dados do arquivo para alteração
-	 * @param {string} dadosArquivo.id - id do arquivo.
-	 * @param {string} dadosArquivo.nome - nova descrição para alteração.
-	 * @param {string} dadosArquivo.tamanho - nova descrição para alteração.
-	 * @param {string} dadosArquivo.chave - nova descrição para alteração.
-	 * @param {string} dadosArquivo.url - nova descrição para alteração.
-	 * 
-	 * @returns {Object} { status: {codigo: number, mensagem: string }}
-	 */
-	alterarArquivo: async function (dadosArquivo) {
+   * Alterar um arquivo.
+   * @function {alterarArquivo}
+   *
+   * @param {Object} dadosArquivo - dados do arquivo para alteração
+   * @param {string} dadosArquivo.id - id do arquivo.
+   * @param {string} dadosArquivo.nome - nova descrição para alteração.
+   * @param {string} dadosArquivo.tamanho - nova descrição para alteração.
+   * @param {string} dadosArquivo.chave - nova descrição para alteração.
+   * @param {string} dadosArquivo.url - nova descrição para alteração.
+   *
+   * @returns {Object} { status: {codigo: number, mensagem: string }}
+   */
+  alterarArquivo: async function(dadosArquivo) {
+    const validarParametro = dadosArquivo => {
+      if (
+        !dadosArquivo ||
+        !dadosArquivo.id ||
+        !dadosArquivo.nome ||
+        !dadosArquivo.tamanho ||
+        !dadosArquivo.chave ||
+        !dadosArquivo.url
+      )
+        return retorno(
+          400,
+          "dados do arquivo inválido para alteração: {id: string, nome: string, tamanho: string, chave: string, url: string}"
+        );
 
-		const validarParametro = dadosArquivo => {
-			if (!dadosArquivo || !dadosArquivo.id || !dadosArquivo.nome  || !dadosArquivo.tamanho || !dadosArquivo.chave || !dadosArquivo.url)
-				return retorno(400, 'dados do arquivo inválido para alteração: {id: string, nome: string, tamanho: string, chave: string, url: string}');
+      return retorno(200, "", {}, { dadosArquivo });
+    };
 
-			return retorno(200, '', {}, {dadosArquivo});
-		}
+    const obterArquivo = async dadosRetorno => {
+      if (dadosRetorno.status.codigo === 200)
+        return await this.obter(dadosRetorno.dadosArquivo);
 
-		const obterArquivo = async dadosRetorno => {
-			if (dadosRetorno.status.codigo === 200)
-				return await this.obter(dadosRetorno.dadosArquivo);
+      return dadosRetorno;
+    };
 
-			return dadosRetorno;
-		}
+    const alterarArquivo = dadosArquivo => dadosRetorno => {
+      if (dadosRetorno.status.codigo === 200) {
+        const r = arquivo.atualizar(dadosRetorno.arquivo, dadosArquivo);
+        if (r.erros.length > 0)
+          return retorno(
+            400,
+            "dados inconsistentes para atualizar o arquivo",
+            {},
+            {},
+            r.erros
+          );
+        return retorno(
+          200,
+          "Arquivo alterado",
+          {},
+          { arquivoAlterado: r.dados }
+        );
+      }
+      return dadosRetorno;
+    };
 
-		const alterarArquivo = dadosArquivo => dadosRetorno => {
-			if (dadosRetorno.status.codigo === 200) {
-				const r = arquivo.atualizar(dadosRetorno.arquivo, dadosArquivo);
-				if (r.erros.length > 0)
-					return retorno(400, 'dados inconsistentes para atualizar o arquivo', {}, {}, r.erros);
-				return retorno(200, 'Arquivo alterado', {}, {arquivoAlterado: r.dados})
-			}
-			return dadosRetorno;
-		}
-
-		const gravarAlteracao = async dadosRetorno => {
-      console.log(dadosRetorno)
-			if (dadosRetorno.status.codigo === 200) {
-				const r = await conexao.collection('Arquivos').updateOne(
-					{ id: dadosRetorno.arquivoAlterado.id },
-					{
-						$set: {
+    const gravarAlteracao = async dadosRetorno => {
+      if (dadosRetorno.status.codigo === 200) {
+        const r = await conexao.collection("Arquivos").updateOne(
+          { id: dadosRetorno.arquivoAlterado.id },
+          {
+            $set: {
               nome: dadosRetorno.arquivoAlterado.nome,
               tamanho: dadosRetorno.arquivoAlterado.tamanho,
               chave: dadosRetorno.arquivoAlterado.chave,
@@ -244,21 +216,29 @@ module.exports = conexao => ({
                   ? `${process.env.URL}/files/${dadosRetorno.arquivoAlterado.chave}`
                   : `http://localhost:3001/files/${dadosRetorno.arquivoAlterado.chave}`
             }
-					}
-				);
-		
-				const codigo = (r.result.ok != 1 || r.result.nModified < 1 ? 400 : 200);
-				const mensagem = (codigo === 200 ? 'arquivo alterado com sucesso.' : 'nenhum arquivo alterado.');
+          }
+        );
 
-				return retorno(codigo, mensagem);
-			}
-			return dadosRetorno;
-		}
+        const codigo = r.result.ok != 1 || r.result.nModified < 1 ? 400 : 200;
+        const mensagem =
+          codigo === 200
+            ? "arquivo alterado com sucesso."
+            : "nenhum arquivo alterado.";
+
+        return retorno(codigo, mensagem);
+      }
+      return dadosRetorno;
+    };
 
     // Alterar...
-		const processarAlteracao = compose(then(gravarAlteracao), then(alterarArquivo(dadosArquivo)), obterArquivo, validarParametro);
-		return await processarAlteracao(dadosArquivo);
-	},
+    const processarAlteracao = compose(
+      then(gravarAlteracao),
+      then(alterarArquivo(dadosArquivo)),
+      obterArquivo,
+      validarParametro
+    );
+    return await processarAlteracao(dadosArquivo);
+  },
   /**
    * Apagar um arquivo pelo id.
    * @function {apagar}

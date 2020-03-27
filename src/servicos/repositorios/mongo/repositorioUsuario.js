@@ -63,42 +63,49 @@ module.exports = conexao => ({
     return await processarObter(dadosUsuario);
   },
   /**
-	 * Obtém um login pelo email.
-	 * @function {obter}
-	 * 
-	 * @param {Object} dadosLogin
-	 * @param {string} dadosLogin.email - email do login para busca.
-	 * 
-	 * @returns {object} {status: {codigo: number, mensagem: string}, login: Object}.
-	 */
-	obterPorEmail: async function (dadosLogin) {
+   * Obtém um login pelo email.
+   * @function {obter}
+   *
+   * @param {Object} dadosLogin
+   * @param {string} dadosLogin.email - email do login para busca.
+   *
+   * @returns {object} {status: {codigo: number, mensagem: string}, login: Object}.
+   */
+  obterPorEmail: async function(dadosLogin) {
+    const validarParametro = dadosLogin => {
+      if (!dadosLogin || !dadosLogin.email)
+        return retorno(400, "dados do login inválido: {email: string}");
 
-		const validarParametro = (dadosLogin) => {
-			if (!dadosLogin || !dadosLogin.email)
-				return retorno(400, 'dados do login inválido: {email: string}');
+      return retorno(200, "", {}, { dadosLogin });
+    };
 
-			return retorno(200, '', {}, { dadosLogin });
-		}
+    const recuperarLogin = async dadosRetorno => {
+      if (dadosRetorno.status.codigo === 200) {
+        const r = await conexao
+          .collection("Usuarios")
+          .findOne({ email: dadosRetorno.dadosLogin.email });
+        if (r) {
+          const uc = usuario.criar(r);
+          if (uc.dados)
+            return retorno(200, "login recuperado.", {}, { login: uc.dados });
+          else
+            return retorno(
+              400,
+              "login com dados inconsistentes.",
+              {},
+              {},
+              uc.erros
+            );
+        }
+        return retorno(404, "login não encontrado.");
+      }
+      return dadosRetorno;
+    };
 
-		const recuperarLogin = async (dadosRetorno) => {
-			if (dadosRetorno.status.codigo === 200) {
-				const r = await conexao.collection('Usuarios').findOne({ email: dadosRetorno.dadosLogin.email });
-				if (r) {
-					const uc = usuario.criar(r);
-					if (uc.dados)
-						return retorno(200, 'login recuperado.', {}, { login: uc.dados });
-					else
-						return retorno(400, 'login com dados inconsistentes.', {}, {}, uc.erros);
-				}
-				return retorno(404, 'login não encontrado.');
-			}
-			return dadosRetorno;
-		}
-
-		// Processar...
-		const processarObter = compose(recuperarLogin, validarParametro);
-		return await processarObter(dadosLogin);
-	},
+    // Processar...
+    const processarObter = compose(recuperarLogin, validarParametro);
+    return await processarObter(dadosLogin);
+  },
   /**
    * Insere um novo usuario ou altera um usuario existente.
    * @function {gravar}
@@ -176,5 +183,36 @@ module.exports = conexao => ({
 
     // Processar ...
     return await compose(gravaUsuario, validarUsuario)(dadosUsuario);
+  },
+  /**
+   * Apagar um usuario pelo id.
+   * @function {apagar}
+   *
+   * @param {Object} dadosUsuario - dados do usuario para apagar.
+   * @param {string} dadosUsuario.id - id do usuario.
+   *
+   * @returns {Object} {status: {codigo: number, mensagem: string}}.
+   */
+  apagar: async function(dadosUsuario) {
+    const validarParametro = dadosUsuario => {
+
+      if (!dadosUsuario || typeof dadosUsuario.id == "undefined")
+        return retorno(400, "dados do usuario inválido: {id: string}");
+      return retorno(200, "", {}, { dadosUsuario });
+    };
+
+    const apagarUsuario = async dadosRetorno => {
+      if (dadosRetorno.status.codigo === 200) {
+        const r = await conexao.collection("Usuarios").deleteOne({
+          id: dadosRetorno.dadosUsuario.id
+        });
+        if (r.deletedCount > 0) return retorno(200, "usuario apagado.");
+        return retorno(404, "usuario não encontrado.");
+      }
+      return dadosRetorno;
+    };
+
+    const processarApagar = compose(apagarUsuario, validarParametro);
+    return await processarApagar(dadosUsuario);
   }
 });

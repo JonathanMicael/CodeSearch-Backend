@@ -17,7 +17,7 @@ module.exports = controle => app => {
   app.put('/usuario/:id', async (req, res) => await controle.executar('gravarUsuario', req, res));
   app.get('/usuarios/:id', async (req, res) => await controle.executar('obterUsuario', req, res));
   app.get('/usuarios', async (req, res) => await controle.executar('listarUsuarios', req, res));
-  //app.delete("/usuario/:id", async (req, res) => await controle.executar("apagarUsuario", req, res));
+  app.delete("/usuario/:id", async (req, res) => await controle.executar("apagarUsuario", req, res));
   
   // Login e Registro na Aplicação
   app.post("/cadastrar",async (req, res) => await controle.executar("gravarUsuario", req, res));
@@ -30,11 +30,15 @@ module.exports = controle => app => {
   app.put("/codigo/:id", async (req, res) => await controle.executar("gravarCodigo", req, res));
   app.delete("/codigo/:id", async (req, res) => await controle.executar("apagarCodigo", req, res));
   
+  // Favoritar ou Desfavoritar codigo.
+  app.post("/codigo/:id/favoritar",async (req, res) => await controle.executar("favoritarCodigo", req, res));
+  app.post("/codigo/:id/desfavoritar",async (req, res) => await controle.executar("desfavoritarCodigo", req, res));
+  
   // Crud de arquivo da Aplicação
   app.get("/arquivos",async (req, res) => await controle.executar("listarArquivos", req, res));
   app.post("/arquivo",async (req, res) => await controle.executar("gravarArquivo", req, res));
   app.put("/arquivo/:id", async (req, res) => await controle.executar("alterarArquivo", req, res));
-  app.get("/arquivos/:id", async (req, res) => await controle.executar("obterArquivos", req, res));
+  app.post("/arquivos", async (req, res) => await controle.executar("obterArquivos", req, res));
   app.delete("/arquivo/:id", async (req, res) => await controle.executar("apagarArquivo", req, res));
   
   return app;

@@ -28,7 +28,7 @@ module.exports = {
         criarCampo("bio", dadosUsuario.bio, null, ""),
         criarCampo("email", dadosUsuario.email, compose(trim, toLower), ""),
         criarCampo("senha", dadosUsuario.senha, compose(trim), ""),
-        criarCampo("permissoes", null, null, ['usuario'])
+        criarCampo("permissoes", null, null, ["usuario"])
       ].reduce((ac, at) => (ac = { ...ac, ...at }), {});
     };
 
@@ -50,9 +50,9 @@ module.exports = {
           validacao.validarNome(
             dados.bio,
             "Bio do usuario deve ter entre 2 e 20 caracteres",
-            true
+            false
           ),
-          validacao.validarNome(
+          validacao.validarEmail(
             dados.email,
             "o email do usuario deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos e pertencer a compasso",
             true
@@ -61,8 +61,7 @@ module.exports = {
             dados.senha,
             "senha do usuario deve ter entre no minimo 8 caracteres e nem todos os especiais são aceitos",
             true
-          ),
-          validacao.validarNome(dados.role, "a role tem que existir", true)
+          )
         );
         return validar(erros);
       };

@@ -40,12 +40,7 @@ module.exports = repositorioUsuario => ({
    * @returns {Object} {status: {codigo: number, mensagem: string}, ...parametro}.
    */
   validarParametro: function(parametro) {
-    if (
-      !parametro ||
-      !parametro.nome ||
-      !parametro.email ||
-      !parametro.senha
-      )
+    if (!parametro || !parametro.nome || !parametro.email || !parametro.senha)
       return retorno(
         400,
         "parâmetro inválido: {nome: string, email: string, senha: string}"
@@ -93,9 +88,11 @@ module.exports = repositorioUsuario => ({
 
       const token = jwt.sign({ id: dadosRetorno.usuario.id }, configuracao, {
         expiresIn: 86400
-      })
+      });
 
-      return retorno(r.status.codigo, r.status.mensagem, dadosRetorno, { dados: {...dadosRetorno.usuario, senha: '', token}});
+      return retorno(r.status.codigo, r.status.mensagem, dadosRetorno, {
+        dados: { ...dadosRetorno.usuario, senha: "", token }
+      });
     }
     return dadosRetorno;
   }
