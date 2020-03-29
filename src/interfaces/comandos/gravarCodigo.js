@@ -65,17 +65,19 @@ module.exports = repositorioCodigo => ({
    * @returns {Object} {status: {codigo: number, mensagem: string}, ...dadosRetorno, logar: Object}.
    */
   obterCodigo: async function(dadosRetorno) {
-    const dadosCodigo = await repositorioCodigo.obterPorTitulo({titulo: dadosRetorno.dadosCodigo.titulo});
-    if(dadosCodigo.status.codigo === 200) {
+    const dadosCodigo = await repositorioCodigo.obterPorTitulo({
+      titulo: dadosRetorno.dadosCodigo.titulo
+    });
+    if (dadosCodigo.status.codigo === 200) {
       if (dadosCodigo.codigo.titulo === dadosRetorno.dadosCodigo.titulo)
-        return retorno(400, "o titulo do codigo já existe.", dadosRetorno);
-    
+        return retorno(200, "o titulo do codigo já existe.", dadosRetorno);
+
       return retorno(200, "o codigo já existe.", dadosRetorno, {
         codigo: dadosCodigo.codigo
       });
     }
 
-    if(dadosCodigo.status.codigo === 404)
+    if (dadosCodigo.status.codigo === 404)
       return retorno(200, "o codigo pode ser gravado.", dadosRetorno, {
         codigo: dadosCodigo.codigo
       });
