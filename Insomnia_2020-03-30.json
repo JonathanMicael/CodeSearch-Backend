@@ -1,0 +1,704 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2020-03-30T14:05:19.603Z",
+  "__export_source": "insomnia.desktop.app:v7.1.1",
+  "resources": [
+    {
+      "_id": "req_33551c00b2444600a72ce35e0fc1a672",
+      "authentication": {},
+      "body": {},
+      "created": 1585247869185,
+      "description": "",
+      "headers": [
+        {
+          "description": "",
+          "id": "pair_85c5fc6c61e749c48883992d4bf05bdf",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1585247869185,
+      "method": "DELETE",
+      "modified": 1585340906782,
+      "name": "deletar um usuario pelo id",
+      "parameters": [],
+      "parentId": "fld_83061a6c8a1441298b716ff060a6470d",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl  }}/usuario/d70ce92c-b66a-4a8c-b0ea-220e5f665dd7",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_83061a6c8a1441298b716ff060a6470d",
+      "created": 1584969263958,
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1584969263958,
+      "modified": 1584969263958,
+      "name": "Usuarios",
+      "parentId": "fld_6e26494f939345d68c2b67609fcab99c",
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_6e26494f939345d68c2b67609fcab99c",
+      "created": 1584539736870,
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1584539736870,
+      "modified": 1584539736870,
+      "name": "CodeSearch 2.0",
+      "parentId": "wrk_99702ac1e42e40038fdfdda3cc2a44d4",
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_99702ac1e42e40038fdfdda3cc2a44d4",
+      "created": 1584109003402,
+      "description": "",
+      "modified": 1584109003402,
+      "name": "CodeSearch",
+      "parentId": null,
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_18165b70b9094dffbc48167afc53534f",
+      "authentication": {},
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"teste.teste@compasso.com.br\",\n\t\"senha\": \"teste\"\n}"
+      },
+      "created": 1585070005504,
+      "description": "",
+      "headers": [
+        {
+          "id": "pair_b9f7a78586e643688d5c378f156b76b4",
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1585070005504,
+      "method": "POST",
+      "modified": 1585577093586,
+      "name": "logar na aplicação",
+      "parameters": [],
+      "parentId": "fld_83061a6c8a1441298b716ff060a6470d",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl  }}/logar",
+      "_type": "request"
+    },
+    {
+      "_id": "req_a0b56407bac54c9f95dcdfff4d09ec8f",
+      "authentication": {},
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"nome\": \"teste\",\n\t\"bio\": \"teste\",\n\t\"email\": \"teste.teste@compasso.com.br\",\n\t\"senha\": \"teste\"\n}\t"
+      },
+      "created": 1584109011568,
+      "description": "",
+      "headers": [
+        {
+          "id": "pair_343c6d5d2a084299a460414078e5720f",
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "description": "",
+          "id": "pair_e80a84bcc41742418ddc7e67dc358c02",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1584991635206,
+      "method": "PUT",
+      "modified": 1585577086034,
+      "name": "alterarUsuario",
+      "parameters": [],
+      "parentId": "fld_83061a6c8a1441298b716ff060a6470d",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "http://localhost:3001/usuario/d70ce92c-b66a-4a8c-b0ea-220e5f665dd7",
+      "_type": "request"
+    },
+    {
+      "_id": "req_c019317bf40b44378294f25568d4d7f0",
+      "authentication": {},
+      "body": {},
+      "created": 1584991635156,
+      "description": "",
+      "headers": [
+        {
+          "description": "",
+          "disabled": false,
+          "id": "pair_b8a00057b7584cc4947bb01e61351004",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        },
+        {
+          "description": "",
+          "id": "pair_a1f6d28dffd14c4eb2955ede17e962e5",
+          "name": "",
+          "value": ""
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1584991635156,
+      "method": "GET",
+      "modified": 1585147779388,
+      "name": "listagem de usuario",
+      "parameters": [],
+      "parentId": "fld_83061a6c8a1441298b716ff060a6470d",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl  }}/usuarios",
+      "_type": "request"
+    },
+    {
+      "_id": "req_baa4a91b34d543608dc99a41f2965985",
+      "authentication": {},
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"nome\":\"teste\",\n\t\"email\": \"teste.teste@compasso.com.br\",\n\t\"senha\": \"teste\"\n}"
+      },
+      "created": 1584991500968,
+      "description": "",
+      "headers": [
+        {
+          "id": "pair_550cc1630bc04d5dae627998811f8ca8",
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1584991500968,
+      "method": "POST",
+      "modified": 1585577060650,
+      "name": "gravação de usuario",
+      "parameters": [],
+      "parentId": "fld_83061a6c8a1441298b716ff060a6470d",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl  }}/cadastrar",
+      "_type": "request"
+    },
+    {
+      "_id": "req_0821c0738ea14b55aa48b716e3b1ac12",
+      "authentication": {},
+      "body": {},
+      "created": 1584627182991,
+      "description": "",
+      "headers": [
+        {
+          "description": "",
+          "id": "pair_ff4a3e9b476b40ceac0fd598804c4667",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1584550883324,
+      "method": "DELETE",
+      "modified": 1585146101226,
+      "name": "deletar um arquivo por id",
+      "parameters": [],
+      "parentId": "fld_198e686fe445496d9394438aeac495bf",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ prodUrl }}/arquivo/1323622a-6571-44f2-8a08-f680a9327a1b",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_198e686fe445496d9394438aeac495bf",
+      "created": 1584545590507,
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1584545590507,
+      "modified": 1584545596926,
+      "name": "Arquivos",
+      "parentId": "fld_6e26494f939345d68c2b67609fcab99c",
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_46d54f7eb9a245f0b187c76900985daa",
+      "authentication": {},
+      "body": {
+        "mimeType": "multipart/form-data",
+        "params": [
+          {
+            "description": "",
+            "disabled": false,
+            "id": "pair_a5c3d0d757cd4f39bfe6a14e1f6a3894",
+            "name": "titulo",
+            "value": "Testando gravacao"
+          },
+          {
+            "description": "",
+            "fileName": "C:\\Users\\jonathan.silva\\Documents\\Projetos\\CodeSearch-Backend\\docker-compose.yaml",
+            "id": "pair_6c05cbe32653440f9ca07f020e9c0db9",
+            "name": "arquivo",
+            "type": "file",
+            "value": ""
+          }
+        ]
+      },
+      "created": 1584555604869,
+      "description": "",
+      "headers": [
+        {
+          "disabled": true,
+          "id": "pair_c7415c4ffe314a19a5de68c25e26fc9e",
+          "name": "Content-Type",
+          "value": "multipart/form-data"
+        },
+        {
+          "description": "",
+          "id": "pair_0edc4ae0b7184565af6410dc4ec65426",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1584550883274,
+      "method": "PUT",
+      "modified": 1585146096014,
+      "name": "alteração de arquivo",
+      "parameters": [],
+      "parentId": "fld_198e686fe445496d9394438aeac495bf",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl  }}/arquivo/ead019e3-115b-41f3-bc59-b52361017eb5",
+      "_type": "request"
+    },
+    {
+      "_id": "req_e52708e820e548e98f310f16145cb69b",
+      "authentication": {},
+      "body": {},
+      "created": 1584545606230,
+      "description": "",
+      "headers": [
+        {
+          "description": "",
+          "id": "pair_b92f6a0b9f75464aaa7d23c1f13917ea",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1584545606230,
+      "method": "GET",
+      "modified": 1585146088945,
+      "name": "Listagem de Arquivos",
+      "parameters": [],
+      "parentId": "fld_198e686fe445496d9394438aeac495bf",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl  }}/arquivos",
+      "_type": "request"
+    },
+    {
+      "_id": "req_030c7f652ed0425a82572b66a35e30a4",
+      "authentication": {},
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"titulo\": \"Testando gravacao\"\n}"
+      },
+      "created": 1584563153022,
+      "description": "",
+      "headers": [
+        {
+          "id": "pair_4471a981416e4daea35797757ebfcb50",
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "description": "",
+          "id": "pair_8d29044146bf4556836689df973f2f1f",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1584545606205,
+      "method": "POST",
+      "modified": 1585317515537,
+      "name": "obter arquivos por id ou titulo",
+      "parameters": [],
+      "parentId": "fld_198e686fe445496d9394438aeac495bf",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl  }}/arquivos",
+      "_type": "request"
+    },
+    {
+      "_id": "req_a2386431ae3e4f3cb226c12e449e0a2c",
+      "authentication": {},
+      "body": {
+        "mimeType": "multipart/form-data",
+        "params": [
+          {
+            "description": "",
+            "id": "pair_7a9f0673950a456e837eb828c882e409",
+            "name": "titulo",
+            "value": "Testando gravacao"
+          },
+          {
+            "description": "",
+            "fileName": "C:\\Users\\jonathan.silva\\Desktop\\PokedexFlutterYoutube-2.0.0\\pubspec.yaml",
+            "id": "pair_6c05cbe32653440f9ca07f020e9c0db9",
+            "name": "arquivo",
+            "type": "file",
+            "value": ""
+          }
+        ]
+      },
+      "created": 1584550883224,
+      "description": "",
+      "headers": [
+        {
+          "disabled": true,
+          "id": "pair_c7415c4ffe314a19a5de68c25e26fc9e",
+          "name": "Content-Type",
+          "value": "multipart/form-data"
+        },
+        {
+          "description": "",
+          "id": "pair_1ae25e658e0346edb220364b35482766",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1584545606180,
+      "method": "POST",
+      "modified": 1585257229708,
+      "name": "gravação de arquivo",
+      "parameters": [],
+      "parentId": "fld_198e686fe445496d9394438aeac495bf",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl }}/arquivo",
+      "_type": "request"
+    },
+    {
+      "_id": "req_a42fb93588514feeaeddb9914d06f354",
+      "authentication": {},
+      "body": {},
+      "created": 1585228548587,
+      "description": "",
+      "headers": [
+        {
+          "description": "",
+          "id": "pair_1535eb91d0754c0c8a8f14d9d18e3716",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1585168767540,
+      "method": "POST",
+      "modified": 1585233296098,
+      "name": "desfavoritar um codigo por id",
+      "parameters": [],
+      "parentId": "fld_4f965a1157df458db572f44b6fec2064",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl  }}/codigo/bbb69b32-dee1-4670-a77b-9c8aef36c3d3/desfavoritar",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_4f965a1157df458db572f44b6fec2064",
+      "created": 1584539744301,
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1584539744301,
+      "modified": 1584539744301,
+      "name": "Codigos",
+      "parentId": "fld_6e26494f939345d68c2b67609fcab99c",
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_9b74e511d8484a848b15e114f3b32e4f",
+      "authentication": {},
+      "body": { "mimeType": "application/json", "text": "" },
+      "created": 1585168767490,
+      "description": "",
+      "headers": [
+        {
+          "id": "pair_bc2bfddca4564486b0febba0d1c7b89f",
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "description": "",
+          "id": "pair_1535eb91d0754c0c8a8f14d9d18e3716",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1585168767490,
+      "method": "POST",
+      "modified": 1585340988047,
+      "name": "favoritar um codigo por id",
+      "parameters": [],
+      "parentId": "fld_4f965a1157df458db572f44b6fec2064",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl  }}/codigo/bbb69b32-dee1-4670-a77b-9c8aef36c3d3/favoritar",
+      "_type": "request"
+    },
+    {
+      "_id": "req_7e18ef3987df420fa53cf4c9e9a1c109",
+      "authentication": {},
+      "body": {},
+      "created": 1584542686598,
+      "description": "",
+      "headers": [
+        {
+          "description": "",
+          "id": "pair_298cc29fb7874fa0af6f529b76cfc676",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1584540209568.5,
+      "method": "DELETE",
+      "modified": 1585143372378,
+      "name": "deletar um codigo por id",
+      "parameters": [],
+      "parentId": "fld_4f965a1157df458db572f44b6fec2064",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl  }}/codigo/0968d07a-7c84-42d3-bac9-e4c5f4a8e68c",
+      "_type": "request"
+    },
+    {
+      "_id": "req_def8cccdc44d4500a2b9f7cc89ac4539",
+      "authentication": {},
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"autor\":\"Teste2\",\n\t\"titulo\":\"Testando gravacao\",\n\t\"descricao\":\"Teste sobre a gravacao de codigo\",\n\t\"tecs\":[\"Teste1\",\"Teste2\",\"Teste3\"],\n\t\"conteudo\":\"\"\n}"
+      },
+      "created": 1584541842471,
+      "description": "",
+      "headers": [
+        {
+          "id": "pair_53fc701a107d41d999c63f4de7a7f123",
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "description": "",
+          "id": "pair_accd71221c324a4c94982b4a1f4615a0",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1584539981633.25,
+      "method": "PUT",
+      "modified": 1585577037294,
+      "name": "alteração de um codigo por id",
+      "parameters": [],
+      "parentId": "fld_4f965a1157df458db572f44b6fec2064",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl  }}/codigo/53bd8237-9cb0-450a-aa58-658695821ea7",
+      "_type": "request"
+    },
+    {
+      "_id": "req_2952a2df8ab245a482af26321ca08fb7",
+      "authentication": {},
+      "body": {},
+      "created": 1584560726081,
+      "description": "",
+      "headers": [
+        {
+          "description": "",
+          "id": "pair_a759064e98444b3481594ef8462c35a2",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1584539753673,
+      "method": "GET",
+      "modified": 1585242685952,
+      "name": "obter codigos por id",
+      "parameters": [],
+      "parentId": "fld_4f965a1157df458db572f44b6fec2064",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl  }}/codigo/bbb69b32-dee1-4670-a77b-9c8aef36c3d3",
+      "_type": "request"
+    },
+    {
+      "_id": "req_4d5e1569cb504fa99bef163ea2ff30a6",
+      "authentication": {},
+      "body": {},
+      "created": 1584539753698,
+      "description": "",
+      "headers": [
+        {
+          "description": "",
+          "id": "pair_755cce7505444083884b449cc93104b1",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        },
+        {
+          "description": "",
+          "id": "pair_e8a3d4256b89427796b1f11ae614f32a",
+          "name": "",
+          "value": ""
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1584539753660.5,
+      "method": "GET",
+      "modified": 1585168823088,
+      "name": "listagem de codigos",
+      "parameters": [],
+      "parentId": "fld_4f965a1157df458db572f44b6fec2064",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl }}/codigos",
+      "_type": "request"
+    },
+    {
+      "_id": "req_c411f74d27d345e58e77fa81e322f1e7",
+      "authentication": {},
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"autor\":\"Teste\",\n\t\"titulo\":\"Testando gravacao onde, alguma coisa. Teste è é assim \",\n\t\"descricao\":\"Teste sobre a gravacao de codigo\",\n\t\"tecs\":[\"Teste1\",\"Teste2\"],\n\t\"conteudo\":\"\"\n}"
+      },
+      "created": 1584541577180,
+      "description": "",
+      "headers": [
+        {
+          "id": "pair_53fc701a107d41d999c63f4de7a7f123",
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "description": "",
+          "id": "pair_ab4d25066dce445ab0bb2e6cbdc3a677",
+          "name": "Authorization",
+          "value": "{{ token  }}"
+        }
+      ],
+      "isPrivate": false,
+      "metaSortKey": -1584539753648,
+      "method": "POST",
+      "modified": 1585577024980,
+      "name": "gravação de um codigo",
+      "parameters": [],
+      "parentId": "fld_4f965a1157df458db572f44b6fec2064",
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingFollowRedirects": "global",
+      "settingRebuildPath": true,
+      "settingSendCookies": true,
+      "settingStoreCookies": true,
+      "url": "{{ localUrl  }}/codigo",
+      "_type": "request"
+    },
+    {
+      "_id": "env_b780e62aa8dd8051026b56248d716d99ab7f7bc0",
+      "color": null,
+      "created": 1584109003452,
+      "data": {
+        "localUrl": "http://localhost:3001",
+        "prodUrl": "https://codesearch-dc.herokuapp.com",
+        "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhiNTFkNWZiLTNmNTctNDk4Yi1iN2Q0LThlN2ViZDFmMGNiMiIsImlhdCI6MTU4NTUxMTg0OSwiZXhwIjoxNTg1NTk4MjQ5fQ.3f4FSv54gHt2xvu6Drc3PXgStn9-Mf_p0nw_ZfajLcE"
+      },
+      "dataPropertyOrder": { "&": ["localUrl", "prodUrl", "token"] },
+      "isPrivate": false,
+      "metaSortKey": 1584109003452,
+      "modified": 1585511860621,
+      "name": "Base Environment",
+      "parentId": "wrk_99702ac1e42e40038fdfdda3cc2a44d4",
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_b780e62aa8dd8051026b56248d716d99ab7f7bc0",
+      "cookies": [],
+      "created": 1584109003459,
+      "modified": 1584109003459,
+      "name": "Default Jar",
+      "parentId": "wrk_99702ac1e42e40038fdfdda3cc2a44d4",
+      "_type": "cookie_jar"
+    }
+  ]
+}

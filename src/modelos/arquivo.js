@@ -42,7 +42,7 @@ module.exports = {
           "id do arquivo no formato UUID V4 inválido",
           true
         ),
-        validacao.validarNome(
+        validacao.validarConteudo(
           d.titulo,
           "titulo do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",
           true

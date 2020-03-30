@@ -106,8 +106,7 @@ module.exports = repositorioCodigo => ({
       400,
       "os dados para recuperar o codigo estão inconsistentes",
       dadosRetorno,
-      {},
-      codigoAtualizado.erros
+      {}
     );
   },
   /**

@@ -57,7 +57,7 @@ module.exports = {
           "titulo do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",
           true
         ),
-        validacao.validarNome(
+        validacao.validarConteudo(
           d.descricao,
           "descrição do repositorio deve ter entre 2 e 250 caracteres e nem todos os especiais são aceitos",
           false
